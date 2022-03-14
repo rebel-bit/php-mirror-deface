@@ -1,0 +1,160 @@
+<IfModule mod_headers.c>
+Header always append X-Frame-Options SAMEORIGIN
+</IfModule> 
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+Options +FollowSymLinks -MultiViews -Indexes
+DirectoryIndex index.php
+
+# Security Control
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak|tpl)$">
+Order Allow,Deny
+Deny from all
+</FilesMatch>
+
+RewriteEngine On
+RewriteCond %{REQUEST_URI} (.*).db [NC]
+RewriteRule ^(.*)$ error.php [R=404,L]
+# Cache Control
+
+<IfModule mod_headers.c>
+<FilesMatch "\.(jpg|jpeg|png|gif|svg|swf|css|js)$">
+    Header set Cache-Control "max-age=31536000, public"
+</FilesMatch>
+</IfModule>
+
+# Gzip Control
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE image/jpg
+AddOutputFilterByType DEFLATE image/png
+AddOutputFilterByType DEFLATE image/svg+xml
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/javascript
+</IfModule>
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+
+RewriteRule ^index/?$ index.php [L,QSA]
+RewriteRule ^archive/?$ archive.php [L,QSA]
+RewriteRule ^notify/?$ notify.php [L,QSA]
+RewriteRule ^onhold/?$ onhold.php [L,QSA]
+RewriteRule ^special/?$ special.php [L,QSA]
+RewriteRule ^team-rank/?$ team-rank.php [L,QSA]
+RewriteRule ^defacer-rank/?$ defacer-rank.php [L,QSA]
+
+RewriteRule ^attacker/?$ attacker.php [L,QSA]
+RewriteRule ^attacker/([^/]+)/?$ attacker.php?name=$1 [L,QSA]
+
+RewriteRule ^team/?$ team.php [L,QSA]
+RewriteRule ^team/([^/]+)/?$ team.php?name=$1 [L,QSA]
+
+RewriteRule ^search/?$ search.php [L,QSA]
+RewriteRule ^search/([^/]+)/?$ search.php?q=$1 [L,QSA]
+
+RewriteRule ^ip/?$ ip.php [L,QSA]
+RewriteRule ^ip/([^/]+)/?$ ip.php?ip=$1 [L,QSA]
+
+RewriteRule ^notif/?$ notif.php [L,QSA]
+RewriteRule ^notifr/([^/]+)/?$ notif.php?id=$1 [L,QSA]
+
+IndexIgnore *
+RewriteEngine On
+ErrorDocument 404 /error.php
+ErrorDocument 403 /error.php
+ErrorDocument 500 /error.php
+ErrorDocument 503 /error.php
+RewriteCond %{HTTP_USER_AGENT} wget.* [NC]
+RewriteRule .* - [F,L]
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php
+</IfModule>
+
+
+RewriteCond %{HTTP_USER_AGENT} ^MIDown\ tool [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mister\ PiX [OR]
+RewriteCond %{HTTP_USER_AGENT} uuuu7u^Navroad [OR]
+RewriteCond %{HTTP_USER_AGENT} ^NearSite [OR]
+RewriteCond %{HTTP_USER_AGENT} ^NetAnts [OR]
+RewriteCond %{HTTP_USER_AGENT} ^NetSpider [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Net\ Vampire [OR]
+RewriteCond %{HTTP_USER_AGENT} ^NetZIP [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Octopus [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Offline\ Explorer [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Offline\ Navigator [OR]
+RewriteCond %{HTTP_USER_AGENT} ^PageGrabber [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Papa\ Foto [OR]
+RewriteCond %{HTTP_USER_AGENT} ^pavuk [OR]
+RewriteCond %{HTTP_USER_AGENT} ^pcBrowser [OR]
+RewriteCond %{HTTP_USER_AGENT} ^RealDownload [OR]
+RewriteCond %{HTTP_USER_AGENT} ^ReGet [OR]
+RewriteCond %{HTTP_USER_AGENT} ^SiteSnagger [OR]
+RewriteCond %{HTTP_USER_AGENT} ^SmartDownload [OR]
+RewriteCond %{HTTP_USER_AGENT} ^SuperBot [OR]
+RewriteCond %{HTTP_USER_AGENT} ^SuperHTTP [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Surfbot [OR]
+RewriteCond %{HTTP_USER_AGENT} ^tAkeOut [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Teleport\ Pro [OR]
+RewriteCond %{HTTP_USER_AGENT} ^VoidEYE [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Web\ Image\ Collector [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Web\ Sucker [OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebAuto [OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebCopier [OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebFetch [OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebGo\ IS [OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebLeacher [OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebReaper [OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebSauger [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Website\ eXtractor [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Website\ Quester [OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebStripper [OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebWhacker [OR]
+RewriteCond %{HTTP_USER_AGENT} ^WebZIP [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Wget [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Widow [OR]
+RewriteCond %{HTTP_USER_AGENT} ^WWWOFFLE [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Xaldon\ WebSpider [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Zeus
+RewriteRule ^.* - [F,L]
+
+# BEGIN cPanel-generated php ini directives, do not edit
+# Manual editing of this file may result in unexpected behavior.
+# To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)
+# For more information, read our documentation (https://go.cpanel.net/EA4ModifyINI)
+<IfModule php7_module>
+   php_flag display_errors Off
+   php_value max_execution_time 60000
+   php_value max_input_time 90000
+   php_value max_input_vars 2000
+   php_value memory_limit 330M
+   php_value post_max_size 300M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php74"
+   php_value upload_max_filesize 300M
+   php_flag zlib.output_compression On
+</IfModule>
+<IfModule lsapi_module>
+   php_flag display_errors Off
+   php_value max_execution_time 60000
+   php_value max_input_time 90000
+   php_value max_input_vars 2000
+   php_value memory_limit 330M
+   php_value post_max_size 300M
+   php_value session.gc_maxlifetime 1440
+   php_value session.save_path "/var/cpanel/php/sessions/ea-php74"
+   php_value upload_max_filesize 300M
+   php_flag zlib.output_compression On
+</IfModule>
+# END cPanel-generated php ini directives, do not edit

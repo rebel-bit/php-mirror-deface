@@ -1,0 +1,4 @@
+[13-Oct-2020 14:57:29 UTC] PHP Notice:  Undefined variable: db in /home/ptssmani/public_html/host/flags/HayooLoo.php on line 1086
+[13-Oct-2020 14:57:29 UTC] PHP Fatal error:  Call to a member function getTypeOfTable() on null in /home/ptssmani/public_html/host/flags/HayooLoo.php on line 1086
+[13-Oct-2020 14:57:33 UTC] PHP Notice:  Undefined variable: db in /home/ptssmani/public_html/host/flags/HayooLoo.php on line 1086
+[13-Oct-2020 14:57:33 UTC] PHP Fatal error:  Call to a member function getTypeOfTable() on null in /home/ptssmani/public_html/host/flags/HayooLoo.php on line 1086
